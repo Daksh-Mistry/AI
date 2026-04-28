@@ -16,7 +16,6 @@ from config import RuntimeConfig, SCORING_DIMENSIONS
 
 logger = logging.getLogger(__name__)
 
-
 # ─────────────────────────────────────────────
 # COMPOSITE SCORE (per claim)
 # ─────────────────────────────────────────────

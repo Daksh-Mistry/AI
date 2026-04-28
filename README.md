@@ -32,7 +32,7 @@
 │  ┌──────────┐   ┌────────────┐   ┌────────────┐          │         │
 │  │  Judge   │   │ Aggregation│   │ Multi-Dim  │          │         │
 │  │ Gemini   │◀──│ Dot Product│◀──│ Scoring    │◀─────────┘         │
-│  │ 1.5 Pro  │   │ Gap + Conf │   │ Gemini     │                     │
+│  │ 2.5 Pro  │   │ Gap + Conf │   │ Gemini     │                     │
 │  └────┬─────┘   └────────────┘   │ Flash      │                     │
 │       │                           └────────────┘                     │
 │       ▼                                                               │
@@ -130,8 +130,8 @@ User Browser
      ▼
 Cloud Run (Streamlit container, port 8080)
      │
-     ├──▶ Vertex AI — Gemini 1.5 Flash (claim generation + scoring)
-     ├──▶ Vertex AI — Gemini 1.5 Pro   (judge synthesis)
+     ├──▶ Vertex AI — Gemini 2.5 Flash (claim generation + scoring)
+     ├──▶ Vertex AI — Gemini 2.5 Pro   (judge synthesis)
      └──▶ Vertex AI — text-embedding-004 (document + claim embeddings)
           ChromaDB runs in-memory / ephemeral in container
 ```

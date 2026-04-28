@@ -33,7 +33,7 @@ def embed_claims(claims: List[str]) -> np.ndarray:
     if not claims:
         return np.empty((0, 768), dtype=np.float32)
 
-    embedder = VertexAIEmbeddings(model_name=EMBEDDING_MODEL)
+    embedder = VertexAIEmbeddings(model_name="text-embedding-004")
     raw_vectors = embedder.embed_documents(claims)
     vectors = np.array(raw_vectors, dtype=np.float32)
     vectors = normalize(vectors, norm="l2")   # cosine ≡ 1 - (u·v) after normalisation

@@ -17,8 +17,8 @@ RETRIEVAL_K: int = 6  # chunks retrieved per RAG query
 # ─────────────────────────────────────────────
 # MODELS
 # ─────────────────────────────────────────────
-FLASH_MODEL: str = "gemini-1.5-flash"
-PRO_MODEL: str = "gemini-1.5-pro"
+FLASH_MODEL: str = "gemini-2.5-flash"
+PRO_MODEL: str = "gemini-2.5-pro"
 EMBEDDING_MODEL: str = "text-embedding-004"
 
 # ─────────────────────────────────────────────

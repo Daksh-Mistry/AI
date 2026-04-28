@@ -2,7 +2,7 @@
 judge.py — Layer 8: Judge / Synthesizer
 
 Receives full aggregation result and generates a transparent,
-human-readable verdict narrative using Gemini 1.5 Pro.
+human-readable verdict narrative using Gemini 2.5 Pro.
 
 The Judge does NOT change the mathematical verdict — it translates
 the numbers into a reasoned explanation and surfaces the reasoning
