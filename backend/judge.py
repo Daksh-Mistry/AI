@@ -15,7 +15,7 @@ from typing import Dict, Any, Optional
 
 from langchain_google_vertexai import ChatVertexAI
 
-from config import PRO_MODEL
+from config import PRO_MODEL, GCP_PROJECT_ID, GCP_LOCATION
 
 logger = logging.getLogger(__name__)
 
@@ -160,6 +160,8 @@ def run_judge(
         model_name=PRO_MODEL,
         temperature=0.1,
         max_output_tokens=2048,
+        project=GCP_PROJECT_ID or None,
+        location=GCP_LOCATION,
     )
 
     if verdict == "no_conclusion":

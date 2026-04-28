@@ -17,7 +17,7 @@ from typing import List, Optional, Dict, Any
 
 from langchain_google_vertexai import ChatVertexAI
 
-from config import RuntimeConfig, FLASH_MODEL, SCORING_DIMENSIONS
+from config import RuntimeConfig, FLASH_MODEL, SCORING_DIMENSIONS, GCP_PROJECT_ID, GCP_LOCATION
 
 logger = logging.getLogger(__name__)
 
@@ -111,6 +111,8 @@ def score_claim(
         model_name=FLASH_MODEL,
         temperature=0.0,
         max_output_tokens=512,
+        project=GCP_PROJECT_ID or None,
+        location=GCP_LOCATION,
     )
 
     try:

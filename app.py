@@ -14,17 +14,26 @@ import tempfile
 import logging
 
 import streamlit as st
+import vertexai
+from dotenv import load_dotenv
 
 # ── Path setup ────────────────────────────────────────────────────────────────
 sys.path.insert(0, os.path.dirname(__file__))
-os.environ.setdefault("GOOGLE_CLOUD_PROJECT", os.getenv("GOOGLE_CLOUD_PROJECT", ""))
+load_dotenv()  # Load .env file if present
 
-from config import RuntimeConfig, SCORING_DIMENSIONS
+from config import RuntimeConfig, SCORING_DIMENSIONS, GCP_PROJECT_ID, GCP_LOCATION
 from graph import build_graph
 from ingestion import ingest_document
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+# ── Initialise Vertex AI SDK with explicit project & location ─────────────────
+if GCP_PROJECT_ID:
+    vertexai.init(project=GCP_PROJECT_ID, location=GCP_LOCATION)
+    logger.info("Vertex AI initialised: project=%s, location=%s", GCP_PROJECT_ID, GCP_LOCATION)
+else:
+    logger.warning("GOOGLE_CLOUD_PROJECT not set — Vertex AI will use default credentials")
 
 # ─────────────────────────────────────────────
 # PAGE CONFIG

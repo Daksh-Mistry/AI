@@ -17,7 +17,7 @@ from langchain.prompts import PromptTemplate
 from langchain.chains import RetrievalQA
 from langchain_community.vectorstores import Chroma
 
-from config import RuntimeConfig, FLASH_MODEL
+from config import RuntimeConfig, FLASH_MODEL, GCP_PROJECT_ID, GCP_LOCATION
 
 logger = logging.getLogger(__name__)
 
@@ -109,6 +109,8 @@ def _build_rag_chain(vectorstore: Chroma, cfg: RuntimeConfig, prompt_template: P
         model_name=FLASH_MODEL,
         temperature=0.2,   # low temp for factual extraction
         max_output_tokens=2048,
+        project=GCP_PROJECT_ID or None,
+        location=GCP_LOCATION,
     )
     retriever = vectorstore.as_retriever(
         search_type="similarity",

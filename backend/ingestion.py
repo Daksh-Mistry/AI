@@ -19,7 +19,7 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_google_vertexai import VertexAIEmbeddings
 from langchain_community.vectorstores import Chroma
 
-from config import RuntimeConfig, EMBEDDING_MODEL
+from config import RuntimeConfig, EMBEDDING_MODEL, GCP_PROJECT_ID, GCP_LOCATION
 
 logger = logging.getLogger(__name__)
 
@@ -80,7 +80,11 @@ def ingest_document(
     logger.info("Split into %d chunks (size=%d, overlap=%d)",
                 len(chunks), cfg.chunk_size, cfg.chunk_overlap)
 
-    embedder = VertexAIEmbeddings(model_name=EMBEDDING_MODEL)
+    embedder = VertexAIEmbeddings(
+        model_name=EMBEDDING_MODEL,
+        project=GCP_PROJECT_ID or None,
+        location=GCP_LOCATION,
+    )
 
     # In-memory Chroma — no persist_directory.
     # Cloud Run containers are ephemeral; each request ingests its own
@@ -102,7 +106,11 @@ def load_existing_vectorstore(
     Load a previously persisted ChromaDB store (for resuming sessions).
     """
     persist_dir = persist_directory or CHROMA_PERSIST_DIR
-    embedder = VertexAIEmbeddings(model_name=EMBEDDING_MODEL)
+    embedder = VertexAIEmbeddings(
+        model_name=EMBEDDING_MODEL,
+        project=GCP_PROJECT_ID or None,
+        location=GCP_LOCATION,
+    )
     return Chroma(
         persist_directory=persist_dir,
         embedding_function=embedder,
