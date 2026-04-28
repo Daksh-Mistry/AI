@@ -1,0 +1,30 @@
+# Adversarial Claim Scoring Engine — Dependencies
+# Install: pip install -r requirements.txt
+
+# ── Google Cloud / Vertex AI ─────────────────
+google-cloud-aiplatform>=1.50.0
+vertexai>=1.50.0
+
+# ── LangChain ecosystem ──────────────────────
+langchain>=0.2.0
+langchain-community>=0.2.0
+langchain-google-vertexai>=1.0.5
+langgraph>=0.1.0
+
+# ── Vector store ─────────────────────────────
+chromadb>=0.5.0
+
+# ── ML / clustering / math ───────────────────
+scikit-learn>=1.4.0
+numpy>=1.26.0
+
+# ── Document loading ─────────────────────────
+pdfplumber>=0.11.0
+python-docx>=1.1.0
+docx2txt>=0.8
+
+# ── Frontend ─────────────────────────────────
+streamlit>=1.35.0
+
+# ── Utilities ────────────────────────────────
+python-dotenv>=1.0.0
